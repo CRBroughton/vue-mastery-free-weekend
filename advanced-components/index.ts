@@ -43,7 +43,7 @@ Object.keys(data).forEach((key) => {
 const data_without_proxy = data
 
 data = new Proxy(data_without_proxy, {
-  get(obj, key): any {
+  get(obj, key) {
     deps.get(key).depend()
     return obj[key]
   },
