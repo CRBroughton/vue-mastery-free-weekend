@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 
 interface Data {
-  [key: string]: number | undefined
+  [key: string | symbol]: number | undefined
   price: number
   quantity: number
   total: number | undefined
 }
 
-const data: Data = {
+let data: Data = {
   price: 5,
   quantity: 2,
   total: undefined,
@@ -33,23 +33,25 @@ class Dep {
   }
 }
 
+const deps = new Map()
+
 // Go through each of our data properties
 Object.keys(data).forEach((key) => {
-  let internalValue = data[key]
+  deps.set(key, new Dep())
+})
 
-  // Each property gets a dependency instance
-  const dep = new Dep()
+const data_without_proxy = data
 
-  Object.defineProperty(data, key, {
-    get() {
-      dep.depend() // <-- Remember the target we're running
-      return internalValue
-    },
-    set(newVal) {
-      internalValue = newVal
-      dep.notify() // <-- Re-run stored functions
-    },
-  })
+data = new Proxy(data_without_proxy, {
+  get(obj, key): any {
+    deps.get(key).depend()
+    return obj[key]
+  },
+  set(obj, key, value) {
+    obj[key] = value
+    deps.get(key).notify()
+    return true
+  },
 })
 
 // The code to watch to listen for reactive properties
