@@ -15,5 +15,9 @@
     "editor.wordWrap": "on",
     "npm-scripts.showStartNotification": false,
     "css.lint.unknownAtRules": "ignore",
-    "scss.lint.unknownAtRules": "ignore"
+    "scss.lint.unknownAtRules": "ignore",
+    "cSpell.words": [
+        "Composables",
+        "vueuse"
+    ]
 }
