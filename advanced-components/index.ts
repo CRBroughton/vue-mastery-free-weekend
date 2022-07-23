@@ -53,7 +53,7 @@ Object.keys(data).forEach((key) => {
 })
 
 // The code to watch to listen for reactive properties
-function watcher(myFunc) {
+function watcher(myFunc: Function | undefined) {
   target = myFunc
   if (target)
     target()
