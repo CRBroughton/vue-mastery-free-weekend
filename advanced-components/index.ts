@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 interface Data {
+  [key: string]: number | undefined
   price: number
   quantity: number
   total: number | undefined
