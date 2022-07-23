@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vueuse/core": "^8.9.4",
     "vue": "^3.2.37"
   },
   "devDependencies": {
